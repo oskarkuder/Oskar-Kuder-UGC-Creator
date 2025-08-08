@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 import Section from './components/Section';
 import ContactModal from './components/ContactModal';
 import { InstagramIcon, TikTokIcon, MailIcon } from './constants';
-
-// Import image from src/assets folder
-import profileImage from './assets/profile.jpeg';
+import { profileImageBase64 } from './imageConstants';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +23,7 @@ const App: React.FC = () => {
           </div>
           <div className="relative z-20 p-4">
             <img
-              src={profileImage}
+              src={profileImageBase64}
               alt="Oskar Kuder's Profile Picture"
               className="w-40 h-40 object-cover rounded-full mx-auto mb-6 border-4 border-gray-700 shadow-lg"
             />
@@ -56,6 +54,7 @@ const App: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-amber-400 transition-colors"
+                    aria-label="Visit Oskar Kuder's Instagram"
                   >
                     <InstagramIcon className="h-7 w-7" />
                   </a>
@@ -64,6 +63,7 @@ const App: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-amber-400 transition-colors"
+                    aria-label="Visit Oskar Kuder's TikTok"
                   >
                     <TikTokIcon className="h-6 w-6" />
                   </a>
