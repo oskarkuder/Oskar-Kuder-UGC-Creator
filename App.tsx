@@ -1,23 +1,17 @@
-
 import React, { useState } from 'react';
 import Section from './components/Section';
 import ContactModal from './components/ContactModal';
 import { InstagramIcon, TikTokIcon, MailIcon } from './constants';
-import { fallbackProfileImage } from './imageConstants';
+
+// Use PUBLIC_URL so it works on GitHub Pages (subfolder)
+const profileImage = process.env.PUBLIC_URL + '/assets/profile.jpeg';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [profileImgSrc, setProfileImgSrc] = useState('./assets/profile.jpeg');
-
-  const handleImageError = () => {
-    // If the primary image fails to load, switch to the embedded fallback image.
-    setProfileImgSrc(fallbackProfileImage);
-  };
 
   return (
     <div className="bg-gray-900 text-gray-200 min-h-screen">
       <main>
-        {/* Hero Section */}
         <Section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900 to-black opacity-80 z-10"></div>
           <div className="absolute inset-0 z-0">
@@ -29,10 +23,9 @@ const App: React.FC = () => {
           </div>
           <div className="relative z-20 p-4">
             <img
-              src={profileImgSrc}
-              onError={handleImageError}
+              src={profileImage}
               alt="Oskar Kuder's Profile Picture"
-              className="w-40 h-40 object-cover rounded-full mx-auto mb-6 border-4 border-gray-700 shadow-lg bg-gray-700"
+              className="w-40 h-40 object-cover rounded-full mx-auto mb-6 border-4 border-gray-700 shadow-lg"
             />
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white uppercase tracking-tighter">
               Oskar Kuder
@@ -79,12 +72,9 @@ const App: React.FC = () => {
             </div>
           </div>
         </Section>
-
-        {/* Footer */}
         <footer className="bg-black/30 py-8 px-4 text-center">
           <p className="text-gray-500 text-sm mt-2">Built with ❤️ and powered by creativity.</p>
         </footer>
-
         <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </main>
     </div>
@@ -92,3 +82,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
