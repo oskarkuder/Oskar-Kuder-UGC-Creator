@@ -7,7 +7,7 @@ import { fallbackProfileImage } from './imageConstants';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [profileImgSrc, setProfileImgSrc] = useState('assets/profile.jpeg');
+  const [profileImgSrc, setProfileImgSrc] = useState('./assets/profile.jpeg');
 
   const handleImageError = () => {
     // If the primary image fails to load, switch to the embedded fallback image.
