@@ -3,10 +3,16 @@ import React, { useState } from 'react';
 import Section from './components/Section';
 import ContactModal from './components/ContactModal';
 import { InstagramIcon, TikTokIcon, MailIcon } from './constants';
-import { profileImageBase64 } from './imageConstants';
+import { fallbackProfileImage } from './imageConstants';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [profileImgSrc, setProfileImgSrc] = useState('assets/profile.jpeg');
+
+  const handleImageError = () => {
+    // If the primary image fails to load, switch to the embedded fallback image.
+    setProfileImgSrc(fallbackProfileImage);
+  };
 
   return (
     <div className="bg-gray-900 text-gray-200 min-h-screen">
@@ -23,9 +29,10 @@ const App: React.FC = () => {
           </div>
           <div className="relative z-20 p-4">
             <img
-              src={profileImageBase64}
+              src={profileImgSrc}
+              onError={handleImageError}
               alt="Oskar Kuder's Profile Picture"
-              className="w-40 h-40 object-cover rounded-full mx-auto mb-6 border-4 border-gray-700 shadow-lg"
+              className="w-40 h-40 object-cover rounded-full mx-auto mb-6 border-4 border-gray-700 shadow-lg bg-gray-700"
             />
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white uppercase tracking-tighter">
               Oskar Kuder
